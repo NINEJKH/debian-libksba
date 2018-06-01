@@ -1,0 +1,25 @@
+sudo: required
+
+language: minimal
+
+services:
+  - docker
+
+env:
+  global:
+    - PACKAGE_NAME: libksba
+    - BINTRAY_PROJECT: 9jkh/gnupg
+    # BINTRAY_USER
+    - secure: "Fvz+xUqHKLaucw6EFeHSGVV34KQYqPvO9nB3nz/GhMoELuDCDojx3DSrTpPNN0eQ+qiyrNTpa3wl3AegvkibtkNnBHXNsntgQPnRKemRYO8rTC/HavcgN4nq1Crr/IZe33rIyhnw6l4S43B4wK03HnOy1agXIYET59sOCZgyZB1r8qEO8en3j59EXEJMuhmYLPFeDUAN6c+xYkepdZglCICSs2kFnJY/3aAPR/iDZKD2BYf/xrYh4PF4tr1tC/vLEmdHNZJqqSV8mIHndmbZwXbjy7wrRDdHw3lYKTwmTz/OfA3cWHqvVMfW8RDoiKUOhrF3M7P/Kv1ylCeKH7ymGilF+fbm8EwlGpJOxE2gI6iuQOctV2NXE5QTlWL1KYMXas01vUIvkaCKeKpn9l5kH/SMPKJtK9u9JPJK5+joyjtK+JcHqRXWQbM9a3heDi5zOI03RhzipLGDSSxUPdqJ492ZqXlfgKwTzZlhMf9mGGtnrraU18hvKaFypAchTpRR2XjPZ+xN+j3CnLeUCCdHuQrCWrqt/jp00e8oX22RfQXBxgHovaUdEJiXlqS35tnOzQQZoHcewe09kdtVjVA8S3P/UnvHAUQD2E18ZJeRDqaC4iKogMqzMTBZxF+QKA+YyFowm+kuH84ZtxmpmVBNGbTWUWzOSKcAN2b0VG0KDIQ="
+    # BINTRAY_API_KEY
+    - secure: "t54Q0vXXsachUMjz9cSW3LkmY/OXNVkEbGKm+JTQCpLZ0iCBFHriSv0SRF9dYoIk8fYYxGWAIBHWxwkgVURU9IwG6Lqa5WBrghK2XDQ9IJRaru0rqwziUWUDP/v257Q52cZ4Vtr9vV0VjIIbPbYxoEIfEWG8TN6zdggaC1TXb7U6vTJh/2r/7oseKDYAiTdccwxCrM7PeRuMSTHiyMxMFIxNJEE32tFlOE/IMEcbKNg6vsaLSoAsBorPEcy8FFEHnueFZKqqh28sWHBW6E5iRL+ArXgKA/Xqaw6wx9iSlkuACep8WcV9zk72hiopuJzMb2wgzlVtw8D6fHd04rdodAg9Go49oZSE1/rzuv20gAPKAru0GwLOZnJScYVEIjopSdxEHzoML3j2YG2GElglpOu3G6o4UUxMhHp38dlLDszfxuT7RPUooPlwVxBYsPtz5YpQrOQoLUa8+vr6bCxPkhBqQOUUCNNfHjBqL5QhAGjNYpiVWRkbhe/JBJ/mi9kXtIaa35pM1eJLgsdaH2aIQBkXGQEnvDI9pLyyRUyQdJ3VePkorhwkHEmOVRHI+t429MlW7DxbyCOQ1tXZXiUmZgKxtlKbEpdMEy80ZniJvePrM3wzDTlhThhRearnldeFQxSXke5ygS+DfzRtIs6hN84yYO0urJlI0bud6M/jYEw="
+
+before_install:
+  - ./build.sh
+
+deploy:
+  provider: script
+  script: "./publish.sh"
+  skip_cleanup: true
+  on:
+    branch: master
